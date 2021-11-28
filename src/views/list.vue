@@ -192,6 +192,26 @@
       </n-card>
     </n-modal>
 
+    <n-modal v-model:show="showSharePikPak">
+      <n-card style="width: 600px;" title="分享">
+        <template #header-extra>
+          <n-icon @click="showSharePikPak = false">
+            <circle-x></circle-x>
+          </n-icon>
+        </template>
+        <n-alert type="info" :title="'确定分享' + sharePikpak.name + '？'">
+          <n-text type="error">
+            分享链接有效期为24小时
+          </n-text>
+        </n-alert>
+        <br/>
+        <n-input placeholder="分享密码" type="password" show-password-on="mousedown" v-model:value="sharePikPakPassword"></n-input>
+
+        <template #action>
+          <n-button :block="true" type="primary" :loading="sharePikPakPostLoading" @click="sharePikPakPost">获取分享链接</n-button>
+        </template>
+      </n-card>
+    </n-modal>
   </div>
 </template>
 
